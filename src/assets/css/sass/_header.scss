@@ -1,0 +1,114 @@
+.page-header {
+  padding: 30px 0 0 0;
+  .top-nav {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    &:after {
+      content: '';
+      position: absolute;
+      z-index: 21;
+      width: 100%;
+      height: 10px;
+      left: 0;
+      bottom: 8px;
+      background-repeat: no-repeat;
+      background-image: url("../../images/topnav-border.png");
+    }
+    .menus {
+      display: flex;
+      align-items: center;
+    }
+    .navbar-right {
+      padding-right: 10px;
+      display: flex;
+      align-items: center;
+    }
+  }
+  .top-logo {
+    margin-top: 30px;
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+@media screen and (max-width: 760px) {
+  .page-header {
+    .top-nav {
+      padding-bottom: 20px;
+      align-items: center;
+    }
+  }
+  .navbar-left.menus {
+    display: none !important;
+  }
+  .navbar-right {
+    .twitter-icons, span {
+      display: none !important;
+    }
+  }
+}
+
+@media screen and (min-width: 759px) {
+  .toggle-btn {
+    display: none;
+  }
+
+  .toolbar_logo {
+    margin-left: 0;
+  }
+}
+
+.side-drawer {
+  font-family: 'Permanent Marker', cursive;
+  height: 100%;
+  color: black;
+  background: white;
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 70%;
+  max-width: 400px;
+  z-index: 200;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+  &.open {
+    transform: translateX(0);
+  }
+  ul {
+    height: 100%;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    li {
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      a {
+        text-decoration: none;
+        color: black;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 759px) {
+  .side-drawer {
+    display: none;
+  }
+}
