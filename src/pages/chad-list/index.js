@@ -140,7 +140,7 @@ const ChadList = () => {
   const [chadsList, setChadsList]  = useState([]);
   const [itemOffset, setItemOffset] = useState(0);
   const [pageCount, setPageCount] = useState(0);
-  const [itemsPerPage, setItemPerPage] = useState(5);
+  const [itemsPerPage, setItemPerPage] = useState(6);
   const [background, setBackground] = useState();
   
 
