@@ -37,7 +37,8 @@ const ChadList = () => {
       { "trait_type": "MOUTH","value": "Y" },
       { "trait_type": "SKINTONE","value": "Black" },
       { "trait_type": "SWAG","value": "Surprised" },
-      ]
+      ],
+	  "isavilable": false
       },
 
       {
@@ -53,7 +54,8 @@ const ChadList = () => {
         { "trait_type": "MOUTH","value": "Y" },
         { "trait_type": "SKINTONE","value": "Black" },
         { "trait_type": "SWAG","value": "Surprised" },
-        ]
+        ],
+		"isavilable": true
         },
 
         {
@@ -69,7 +71,8 @@ const ChadList = () => {
           { "trait_type": "MOUTH","value": "Y" },
           { "trait_type": "SKINTONE","value": "Black" },
           { "trait_type": "SWAG","value": "Surprised" },
-          ]
+          ],
+		  "isavilable": false
           },
 
           {
@@ -101,7 +104,8 @@ const ChadList = () => {
               { "trait_type": "MOUTH","value": "Y" },
               { "trait_type": "SKINTONE","value": "Black" },
               { "trait_type": "SWAG","value": "Surprised" },
-              ]
+              ],
+			  "isavilable": false
               },
 
               {
@@ -117,7 +121,8 @@ const ChadList = () => {
                 { "trait_type": "MOUTH","value": "Y" },
                 { "trait_type": "SKINTONE","value": "Black" },
                 { "trait_type": "SWAG","value": "Surprised" },
-                ]
+                ],
+				"isavilable": true
                 },
                 {
                   "name": "Chad #0006",
@@ -132,7 +137,8 @@ const ChadList = () => {
                   { "trait_type": "MOUTH","value": "Y" },
                   { "trait_type": "SKINTONE","value": "Black" },
                   { "trait_type": "SWAG","value": "Surprised" },
-                  ]
+                  ],
+				  "isavilable": false
                   }
 
   ]
@@ -237,7 +243,23 @@ const ChadList = () => {
       {
         chadsList.length > 0 ? 
         chadsList.map((item,i)=>(
-       <div key={i+'key'} data={i} className="col-md-4 col-xl-4 mb-4">
+		<>
+		{
+			i == 0 &&
+		<div className="col-md-4 col-xl-4 mb-4 chad_list d-xl-none d-block">
+      <Title>FILTERS</Title>
+             <BackgroundSelect  onChangeFunction={(e)=>{filterBackgroundData(e)}}  className="mx-auto" label={'BACKGROUND'} />
+             <BodySelect  onChangeFunction={(e)=>{filterBodySize(e)}} className="mx-auto" label={'BODY'} />
+             <ChainSelect className="mx-auto" label={'CHAIN'} />
+             <EyeSelect className="mx-auto" label={'EYE'} />
+             <HeadSelect className="mx-auto" label={'HEAD'} />
+             <MouthSelect className="mx-auto" label={'MOUTH'} />
+             <SkintoneSelect className="mx-auto" label={'SKINTONE'} />
+             <SwagSelect className="mx-auto" label={'SWAG'} />
+      </div>
+			
+		}
+       <div key={i+'key'} data={i} className="col-md-4 col-xl-4 mb-4 chad_list">
             <Card>
               <img className="card-image" src={demoImage3} alt="demo" />
               <CardTitle>{item.name}</CardTitle>
@@ -251,13 +273,27 @@ const ChadList = () => {
                 )))
               }
              
-              <CardBottom>
+             
+			  
+			  {
+				 item.isavilable ? 
+				  <CardBottom>
+                <div></div>
+                <div className="">
+                  <div className="d-flex justify-content-center align-items-center">1.1 <img src={dangerImg} className="ml-2" width="30" alt="danger" /></div>
+                  <Button arrow="right">BUY NOW</Button>
+                </div>
+                <div>Last 1</div>
+              </CardBottom>
+			  :
+			 <CardBottom>
                 <div>Not Listed</div>
                 <div className="d-flex align-items-center">Last 1 <img src={dangerImg} className="ml-2" width="30" alt="danger" /></div>
               </CardBottom>
+			  }
             </Card>
           </div>
-
+		</>
         ))
     
        
@@ -267,6 +303,7 @@ const ChadList = () => {
       </div>
 
       <div className="col-xl-3 mb-4">
+	  <div className="d-xl-block d-none">
       <Title>FILTERS</Title>
              <BackgroundSelect  onChangeFunction={(e)=>{filterBackgroundData(e)}}  className="mx-auto" label={'BACKGROUND'} />
              <BodySelect  onChangeFunction={(e)=>{filterBodySize(e)}} className="mx-auto" label={'BODY'} />
@@ -277,6 +314,7 @@ const ChadList = () => {
              <SkintoneSelect className="mx-auto" label={'SKINTONE'} />
              <SwagSelect className="mx-auto" label={'SWAG'} />
       </div>
+	  </div>
  </div>
 
 {

@@ -8,3 +8,17 @@ ul.pagination li a {
   padding: 2px 8px;
   cursor:pointer
 }
+.menus a:hover{text-decoration:none}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 920px) {
+  .chad_list span {
+    font-size: 17px!important;
+}
+}
+
+@media screen and (max-width: 850px) {
+  .chad_list span {
+    font-size: 14px!important;
+}
+}
