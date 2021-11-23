@@ -148,6 +148,7 @@ const ChadList = () => {
   const [pageCount, setPageCount] = useState(0);
   const [itemsPerPage, setItemPerPage] = useState(6);
   const [background, setBackground] = useState();
+  const [isClear, setIsClear]   = useState(false);
   
 
   // useEffect(()=>{
@@ -170,6 +171,7 @@ const ChadList = () => {
   };
   
   const filterBackgroundData = (e) =>{
+    if(e!==null){
     const listData= [...chadsListdata];
     const filterData =[];
     //const newListdate= listData.filter(item => item.attributes[].trait_type =="BACKGROUND");
@@ -184,9 +186,16 @@ const ChadList = () => {
       setChadsList(filterData.slice(itemOffset, endOffset));
       setPageCount(Math.ceil(filterData.length / itemsPerPage));
   }
-
+  else
+  {
+    const endOffset = 0 + itemsPerPage;
+    setChadsList(chadsListdata.slice(0, endOffset));
+    setItemOffset(0)
+  }
+  }
 
   const filterBodySize = (e) =>{
+    if(e!==null){
     const listData= [...chadsListdata];
     const filterData =[];
     //const newListdate= listData.filter(item => item.attributes[].trait_type =="BACKGROUND");
@@ -200,7 +209,12 @@ const ChadList = () => {
       const endOffset = itemOffset + itemsPerPage;
       setChadsList(filterData.slice(itemOffset, endOffset));
       setPageCount(Math.ceil(filterData.length / itemsPerPage));
+  }else{
+    const endOffset = 0 + itemsPerPage;
+    setChadsList(chadsListdata.slice(0, endOffset));
+    setItemOffset(0)
   }
+}
 
 
 
@@ -248,7 +262,7 @@ const ChadList = () => {
 			i == 0 &&
 		<div className="col-md-4 col-xl-4 mb-4 chad_list d-xl-none d-block">
       <Title>FILTERS</Title>
-             <BackgroundSelect  onChangeFunction={(e)=>{filterBackgroundData(e)}}  className="mx-auto" label={'BACKGROUND'} />
+             <BackgroundSelect isClear={isClear}  onChangeFunction={(e)=>{filterBackgroundData(e)}}  className="mx-auto" label={'BACKGROUND'} />
              <BodySelect  onChangeFunction={(e)=>{filterBodySize(e)}} className="mx-auto" label={'BODY'} />
              <ChainSelect className="mx-auto" label={'CHAIN'} />
              <EyeSelect className="mx-auto" label={'EYE'} />
