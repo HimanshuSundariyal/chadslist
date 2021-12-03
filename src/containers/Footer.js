@@ -17,7 +17,7 @@ const Footer = () => {
         <div className="navbar-left menus">
           <TabItem active={location.pathname === '/' ? true : false} image={homeImage}><NavLink to={'/'}>Home / Mint</NavLink></TabItem>
           <TabItem active={location.pathname === '/list' ? true : false} image={basketImage}><NavLink to={'/list'}>Marketplace</NavLink></TabItem>
-          <TabItem image={dotsImage}><NavLink to={'/'}>About</NavLink></TabItem>
+          <TabItem image={dotsImage}><NavLink to={'/my-chads'}>My Chads</NavLink></TabItem>
         </div>
       </div>
       <div className="footer-logo">
