@@ -14,6 +14,10 @@ const ChadList = React.lazy(() =>
   import(/* webpackChunkName: "homepage" */ "./pages/chad-list")
 );
 
+const MyChadList = React.lazy(() =>
+  import(/* webpackChunkName: "homepage" */ "./pages/my-chads")
+);
+
 
 class App extends React.Component {
   render() {
@@ -32,6 +36,11 @@ class App extends React.Component {
                   path="/list"
                   exact
                   render={(props) => <ChadList {...props} />}
+                />
+                  <Route
+                  path="/my-chads"
+                  exact
+                  render={(props) => <MyChadList {...props} />}
                 />
               </Switch>
             </AppLayout>
