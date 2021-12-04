@@ -9,7 +9,39 @@ ul.pagination li a {
   cursor:pointer
 }
 .menus a:hover{text-decoration:none}
+.mychad-bottom{
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: 'Permanent Marker', cursive;
+  font-weight: bold;
+  color: black;
+  font-size: 25px;
+  margin-top: 20px;
+  position: absolute;
+  bottom: 5px;
+  width: 75%;
+}
 
+.mychad-bottom-second{
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: 'Permanent Marker', cursive;
+  font-weight: bold;
+  color: black;
+  font-size: 25px;
+  margin-top: 20px;
+  position: absolute;
+  bottom: 5px;
+  width: 78%;
+}
+.removelist-div{  display: inline-flex;  width: 100%;}
+
+.chad_list.chad_list_mychad > div {
+  min-height: 695px;
+}
+.mychad-bottom-second button {font-size:17px; margin-left:17px}
+.listforsale-btn{margin-top:35px!important}
 /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
 @media screen and (max-width: 920px) {
   .chad_list span {
