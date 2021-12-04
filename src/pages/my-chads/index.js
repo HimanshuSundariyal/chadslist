@@ -38,7 +38,8 @@ const MyChadList = () => {
       { "trait_type": "SKINTONE","value": "Black" },
       { "trait_type": "SWAG","value": "Surprised" },
       ],
-	  "isavilable": false
+	  "isavilable": false,
+    "removeitem": true,
       },
 
       {
@@ -55,7 +56,8 @@ const MyChadList = () => {
         { "trait_type": "SKINTONE","value": "Black" },
         { "trait_type": "SWAG","value": "Surprised" },
         ],
-		"isavilable": true
+		"isavilable": true,
+    "removeitem": false,
         },
 
         {
@@ -72,7 +74,8 @@ const MyChadList = () => {
           { "trait_type": "SKINTONE","value": "Black" },
           { "trait_type": "SWAG","value": "Surprised" },
           ],
-		  "isavilable": false
+		  "isavilable": false,
+      "removeitem": false,
           },
 
           {
@@ -146,7 +149,7 @@ const MyChadList = () => {
   const [chadsList, setChadsList]  = useState([]);
   const [itemOffset, setItemOffset] = useState(0);
   const [pageCount, setPageCount] = useState(0);
-  const [itemsPerPage, setItemPerPage] = useState(6);
+  const [itemsPerPage, setItemPerPage] = useState(20);
   const [background, setBackground] = useState();
   const [isClear, setIsClear]   = useState(false);
   
@@ -258,7 +261,7 @@ const MyChadList = () => {
         chadsList.length > 0 ? 
         chadsList.map((item,i)=>(
 		
-       <div key={i+'key'} data={i} className="col-md-3 col-xl-3 mb-4 chad_list">
+       <div key={i+'key'} data={i} className="col-md-3 col-xl-3 mb-4 chad_list chad_list_mychad">
             <Card>
               <img className="card-image" src={demoImage3} alt="demo" />
               <CardTitle>{item.name}</CardTitle>
@@ -271,25 +274,30 @@ const MyChadList = () => {
                 </div>
                 )))
               }
-             
-             
-			  
-			  {
-				 item.isavilable ? 
-				  <CardBottom>
-                <div></div>
-                <div className="">
-                  <div className="d-flex justify-content-center align-items-center">1.1 <img src={dangerImg} className="ml-2" width="30" alt="danger" /></div>
-                  <Button arrow="right">BUY NOW</Button>
-                </div>
-                <div>Last 1</div>
-              </CardBottom>
-			  :
-			 <CardBottom>
-                <div>Not Listed</div>
-                <div className="d-flex align-items-center">Last 1 <img src={dangerImg} className="ml-2" width="30" alt="danger" /></div>
-              </CardBottom>
-			  }
+             			  {
+				            item.isavilable ? 
+                   
+                    <Button className="mt-4 listforsale-btn" style={{marginLeft: '20px'}} arrow="right">List For Sale</Button>
+                    
+                    :''
+                    }
+            
+             {
+                item.removeitem ?
+                 <div className="mychad-bottom-second">
+                 <div>Listed For</div>
+                    <div className="removelist-div">
+                    <div className="d-flex justify-content-center align-items-center">1.1 <img src={dangerImg} className="ml-2" width="30" alt="danger" /></div>
+                  <Button arrow="right">Remove listing</Button>
+                    </div> 
+                 </div>
+
+             :
+            <div className="mychad-bottom">
+              <div>Not Listed</div>
+              <div>Last 1</div>
+            </div>
+}
             </Card>
           </div>
         ))
