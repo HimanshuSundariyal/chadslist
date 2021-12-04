@@ -21,7 +21,7 @@ const SideDrawer = props => {
             <img src={basketImage} className="mr-3" alt="Marketplace" /><NavLink to={'/list'}>Marketplace</NavLink>
         </li>
         <li>
-            <img src={dotsImage} className="mr-3" alt="Dots" /><NavLink to={'/about'}>About</NavLink>
+            <img src={dotsImage} className="mr-3" alt="Dots" /><NavLink to={'/my-chads'}>My chads</NavLink>
         </li>
       </ul>
     </nav>
