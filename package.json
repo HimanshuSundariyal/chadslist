@@ -7,6 +7,7 @@
     "cra-template": "1.1.2",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
+    "react-bootstrap": "^2.1.1",
     "react-dom": "^17.0.2",
     "react-modal": "^3.14.3",
     "react-paginate": "^8.0.0",
@@ -21,12 +22,12 @@
     "web3": "^1.6.0"
   },
   "scripts": {
-		 "start": "react-scripts start",
-		 "predeploy": "npm run build",
-		 "deploy": "gh-pages -d build",
-		 "build": "react-scripts build",
-		 "test": "react-scripts test",
-		 "eject": "react-scripts eject"
+    "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

@@ -1,5 +1,4 @@
 import React,{useState, useEffect} from 'react';
-
 import SectionFulid from '../../components/sections/SectionFulid';
 import Title from '../../components/sections/Title';
 import SubTitle from '../../components/sections/SubTitle';
@@ -7,19 +6,11 @@ import Card from '../../components/cards/Card';
 import CardTitle from '../../components/cards/CardTitle';
 import CardBottom from '../../components/cards/CardBottom';
 import Button from '../../components/forms/Button';
-
-import BackgroundSelect from '../../components/forms/BackgroundSelect';
-import BodySelect from '../../components/forms/BodySelect';
-import ChainSelect from '../../components/forms/ChainSelect';
-import EyeSelect from '../../components/forms/EyeSelect';
-import HeadSelect from '../../components/forms/HeadSelect';
-import MouthSelect from '../../components/forms/MouthSelect';
-import SkintoneSelect from '../../components/forms/SkintoneSelect';
-import SwagSelect from '../../components/forms/SwagSelect';
-
 import demoImage3 from '../../assets/images/demo/image_3.png';
 import dangerImg from '../../assets/images/danger.png';
 import ReactPaginate from 'react-paginate';
+import { Modal } from 'react-bootstrap'
+
 
 const MyChadList = () => {
 
@@ -152,6 +143,7 @@ const MyChadList = () => {
   const [itemsPerPage, setItemPerPage] = useState(20);
   const [background, setBackground] = useState();
   const [isClear, setIsClear]   = useState(false);
+  const [show, setShow]  = useState(false);
   
 
   // useEffect(()=>{
@@ -219,10 +211,40 @@ const MyChadList = () => {
   }
 }
 
+const  handleClose  = () =>{
+  setShow(false);
+}
 
+const handleShow = () =>{
+  setShow(true);
+}
 
   return (
     <>
+
+    <Modal className="chad_popup" show={show} onHide={handleClose} animation={false}>
+          <Modal.Body>  
+            <div className="popup_img">
+              <img className="card-image" src={demoImage3} alt="demo" />
+              <CardTitle>Chad #0000 </CardTitle>
+            </div>
+            
+            <div className="pop-up-bottom">
+                <div className="popup-price-div">
+                Sale Price
+                </div>
+
+                <div className="popup_input">
+                 <input placeholder='Input' type="text"/> 
+                <img src={dangerImg} className="ml-2" width="30" alt="danger" />
+                </div>
+
+                <Button onClick={()=>{handleShow()}} className="mt-4 listforsale-btn" style={{marginLeft: '50px'}} arrow="right">List For Sale</Button>
+            </div>
+
+          </Modal.Body>
+    </Modal>
+
       <SectionFulid>
         <div className="row">
           <div className="col-xl-9">
@@ -276,8 +298,7 @@ const MyChadList = () => {
               }
              			  {
 				            item.isavilable ? 
-                   
-                    <Button className="mt-4 listforsale-btn" style={{marginLeft: '20px'}} arrow="right">List For Sale</Button>
+                    <Button onClick={()=>{handleShow()}} className="mt-4 listforsale-btn" style={{marginLeft: '20px'}} arrow="right">List For Sale</Button>
                     
                     :''
                     }
