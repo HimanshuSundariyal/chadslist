@@ -49,7 +49,7 @@ ul.pagination li a {
     background-size: 100% 100%;
     border:none;
     background-color: transparent;
-    max-width: 300px;
+    max-width: 480px;
 }
 .popup_img img {
   max-width: 100%;
@@ -65,10 +65,12 @@ ul.pagination li a {
   margin-top: 10px;
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 22px;
+  font-family:"IBM Plex Mono";
 }
 .pop-up-bottom button {
   margin-top: 20px!important;
+  font-size: 25px;
 }
 .popup_input {
   margin-top: 10px;
@@ -78,7 +80,9 @@ ul.pagination li a {
   padding: 4px 9px;
   border-radius: 29px;
   max-width: 120px;
-} 
+  font-family: 'Permanent Marker';
+  font-size: 25px;
+}
 .pop-up-bottom {
   text-align: center;
 }
@@ -92,11 +96,29 @@ ul.pagination li a {
 }
 .mychad-bottom-second{font-size: 17px!important;}
 .mychad-bottom, .chad_list_mychad h4{font-size: 17px!important;}
-.chad_list_mychad > div{padding:10px!important; min-height: 530px!important;}
+.chad_list_mychad > div{padding:10px!important; }
 }
 
 @media screen and (max-width: 850px) {
   .chad_list span {
     font-size: 14px!important;
 }
+}
+
+@media (min-width:1400px) and (max-width:1500px) {
+  .chad_list_mychad > div{min-height:730px!important; }
+}
+
+@media (min-width:1500px) and (max-width:1600px) {
+  .chad_list_mychad > div{min-height:760px!important; }
+}
+
+@media (min-width:1600px) and (max-width:1700px) {
+  .chad_list_mychad > div{min-height:780px!important; }
+}
+@media (min-width:1700px) and (max-width:1800px) {
+  .chad_list_mychad > div{min-height:800px!important; }
+}
+@media (min-width:1800px)  {
+  .chad_list_mychad > div{min-height:860px!important; }
 }

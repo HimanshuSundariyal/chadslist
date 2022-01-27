@@ -235,11 +235,11 @@ const handleShow = () =>{
                 </div>
 
                 <div className="popup_input">
-                 <input placeholder='Input' type="text"/> 
+                 <input placeholder='Input' type="text" className="popInput"/> 
                 <img src={dangerImg} className="ml-2" width="30" alt="danger" />
                 </div>
 
-                <Button onClick={()=>{handleShow()}} className="mt-4 listforsale-btn" style={{marginLeft: '50px'}} arrow="right">List For Sale</Button>
+                <Button onClick={()=>{handleShow()}} className="mt-4 listforsale-btn pop-btn" style={{display: 'inline'}} arrow="right">List For Sale</Button>
             </div>
 
           </Modal.Body>
@@ -296,6 +296,8 @@ const handleShow = () =>{
                 </div>
                 )))
               }
+
+             
              			  {
 				            item.isavilable ? 
                     <Button onClick={()=>{handleShow()}} className="mt-4 listforsale-btn" style={{marginLeft: '20px'}} arrow="right">List For Sale</Button>
