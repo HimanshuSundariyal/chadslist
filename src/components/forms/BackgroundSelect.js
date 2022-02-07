@@ -54,7 +54,7 @@ const CustomSelect = ({ className, label, onChangeFunction }) => {
       <label>{label}</label>
       <Select
         options={demoOptions}
-        onChange={(e)=>{onChangeFunction(e)}}
+        onChange={(label,e)=>{onChangeFunction(label,e)}}
         isClearable={true}
       />
     </StyledSelect>

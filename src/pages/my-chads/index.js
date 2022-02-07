@@ -289,7 +289,7 @@ const handleShow = () =>{
               <CardTitle>{item.name}</CardTitle>
               {
                 item.attributes.map((attr=>(
-                  <div className="d-flex justify-content-between">
+                  <div className="d-flex justify-content-between des_cls">
                   <span>{attr.trait_type}</span>
                   <span>.....</span>
                   <span>{attr.value}</span>
@@ -317,8 +317,8 @@ const handleShow = () =>{
 
              :
             <div className="mychad-bottom">
-              <div>Not Listed</div>
-              <div>Last 1</div>
+              <div className="listed-left">Not Listed</div>
+              <div className="listed-right">Last 1</div>
             </div>
 }
             </Card>

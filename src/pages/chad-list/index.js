@@ -149,6 +149,8 @@ const ChadList = () => {
   const [itemsPerPage, setItemPerPage] = useState(6);
   const [background, setBackground] = useState();
   const [isClear, setIsClear]   = useState(false);
+  const [filters, setFilters]   = useState([]);
+  
   
 
   // useEffect(()=>{
@@ -170,51 +172,111 @@ const ChadList = () => {
     setItemOffset(newOffset);
   };
   
-  const filterBackgroundData = (e) =>{
-    if(e!==null){
-    const listData= [...chadsListdata];
-    const filterData =[];
-    //const newListdate= listData.filter(item => item.attributes[].trait_type =="BACKGROUND");
-    for(let i=0; i<listData.length; i++){
-      let arr = listData[i];
-      let filter =  arr.attributes.filter(item => item.trait_type == 'BACKGROUND' && item.value==e.value)
-      if(filter.length){
-        filterData.push(arr);
-      }
-    }    
-     const endOffset = itemOffset + itemsPerPage;
-      setChadsList(filterData.slice(itemOffset, endOffset));
-      setPageCount(Math.ceil(filterData.length / itemsPerPage));
-  }
-  else
-  {
-    const endOffset = 0 + itemsPerPage;
-    setChadsList(chadsListdata.slice(0, endOffset));
-    setItemOffset(0)
-  }
-  }
 
-  const filterBodySize = (e) =>{
-    if(e!==null){
-    const listData= [...chadsListdata];
-    const filterData =[];
-    //const newListdate= listData.filter(item => item.attributes[].trait_type =="BACKGROUND");
-    for(let i=0; i<listData.length; i++){
-      let arr = listData[i];
-      let filter =  arr.attributes.filter(item => item.trait_type == 'BODY' && item.value==e.value)
+const filterdata = (attrname, e) =>{
+// //  console.log(attrname, "attrname");
+//     console.log(e,"e");
+ let filtes_data = [...filters];
+ if(e==null){
+  let new_filters = filtes_data.filter(item => item.key!==attrname);
+  setFilters(new_filters);
+  filterChadList(new_filters);
+ }
+ else
+ {
+   let pre_filter = filtes_data.filter(item => item.key == attrname);
+   if(pre_filter.length > 0){
+    let filter_index = filtes_data.findIndex(item => item.key == attrname);
+    console.log(filter_index);
+    filtes_data[filter_index].value = e.value;
+    setFilters(filtes_data);
+    filterChadList(filtes_data);
+   }
+   else
+   {
+     let newobj = { 'key':  attrname, 'value': e.value}
+     filtes_data.push(newobj);
+     setFilters(filtes_data);
+     filterChadList(filtes_data);
+   } 
+ }
+
+
+
+}
+
+
+const filterChadList = (filtes_data) =>{
+  let listData = [...chadsListdata];
+  console.log(filtes_data.length, "filters.length");
+  for(let i=0; i<filtes_data.length; i++){
+    let filterData = []
+    for(let k=0; k<listData.length; k++){
+      let arr = listData[k];
+      let filter =  arr.attributes.filter(item => item.trait_type == filtes_data[i].key && item.value== filtes_data[i].value)
       if(filter.length){
         filterData.push(arr);
       }
     }
-      const endOffset = itemOffset + itemsPerPage;
-      setChadsList(filterData.slice(itemOffset, endOffset));
-      setPageCount(Math.ceil(filterData.length / itemsPerPage));
-  }else{
-    const endOffset = 0 + itemsPerPage;
-    setChadsList(chadsListdata.slice(0, endOffset));
-    setItemOffset(0)
+  listData = filterData;
   }
+       const endOffset = itemOffset + itemsPerPage;
+      setChadsList(listData.slice(itemOffset, endOffset));
+      setPageCount(Math.ceil(listData.length / itemsPerPage)); 
+
+
 }
+
+console.log(filters, "filters");
+
+  
+  // const filterBackgroundData = (e) =>{
+  // //   if(e!==null){
+  // //   const listData= [...chadsListdata];
+  // //   const filterData =[];
+  // //   for(let i=0; i<listData.length; i++){
+  // //     let arr = listData[i];
+  // //     let filter =  arr.attributes.filter(item => item.trait_type == 'BACKGROUND' && item.value==e.value)
+  // //     if(filter.length){
+  // //       filterData.push(arr);
+  // //     }
+  // //   }    
+  // //    const endOffset = itemOffset + itemsPerPage;
+  // //     setChadsList(filterData.slice(itemOffset, endOffset));
+  // //     setPageCount(Math.ceil(filterData.length / itemsPerPage));
+  // // }
+  // // else
+  // // {
+  // //   const endOffset = 0 + itemsPerPage;
+  // //   setChadsList(chadsListdata.slice(0, endOffset));
+  // //   setItemOffset(0)
+  // // }
+    
+
+
+  // }
+
+//   const filterBodySize = (e) =>{
+//     if(e!==null){
+//     const listData= [...chadsList];
+//     const filterData =[];
+//     //const newListdate= listData.filter(item => item.attributes[].trait_type =="BACKGROUND");
+//     for(let i=0; i<listData.length; i++){
+//       let arr = listData[i];
+//       let filter =  arr.attributes.filter(item => item.trait_type == 'BODY' && item.value==e.value)
+//       if(filter.length){
+//         filterData.push(arr);
+//       }
+//     }
+//       const endOffset = itemOffset + itemsPerPage;
+//       setChadsList(filterData.slice(itemOffset, endOffset));
+//       setPageCount(Math.ceil(filterData.length / itemsPerPage));
+//   }else{
+//     const endOffset = 0 + itemsPerPage;
+//     setChadsList(chadsListdata.slice(0, endOffset));
+//     setItemOffset(0)
+//   }
+// }
 
 
 
@@ -262,8 +324,8 @@ const ChadList = () => {
 			i == 0 &&
 		<div className="col-md-4 col-xl-4 mb-4 chad_list d-xl-none d-block">
       <Title>FILTERS</Title>
-             <BackgroundSelect isClear={isClear}  onChangeFunction={(e)=>{filterBackgroundData(e)}}  className="mx-auto" label={'BACKGROUND'} />
-             <BodySelect  onChangeFunction={(e)=>{filterBodySize(e)}} className="mx-auto" label={'BODY'} />
+             <BackgroundSelect isClear={isClear}  onChangeFunction={(lable, e)=>{filterdata('BACKGROUND',e)}}  className="mx-auto" label={'BACKGROUND'} />
+             <BodySelect  onChangeFunction={(lable,e)=>{filterdata('BODY',e)}} className="mx-auto" label={'BODY'} />
              <ChainSelect className="mx-auto" label={'CHAIN'} />
              <EyeSelect className="mx-auto" label={'EYE'} />
              <HeadSelect className="mx-auto" label={'HEAD'} />
@@ -319,8 +381,8 @@ const ChadList = () => {
       <div className="col-xl-3 mb-4">
 	  <div className="d-xl-block d-none">
       <Title>FILTERS</Title>
-             <BackgroundSelect  onChangeFunction={(e)=>{filterBackgroundData(e)}}  className="mx-auto" label={'BACKGROUND'} />
-             <BodySelect  onChangeFunction={(e)=>{filterBodySize(e)}} className="mx-auto" label={'BODY'} />
+            <BackgroundSelect isClear={isClear}  onChangeFunction={(e)=>{filterdata('BACKGROUND',e)}}  className="mx-auto" label={'BACKGROUND'} />
+             <BodySelect  onChangeFunction={(e)=>{filterdata('BODY',e)}} className="mx-auto" label={'BODY'} />
              <ChainSelect className="mx-auto" label={'CHAIN'} />
              <EyeSelect className="mx-auto" label={'EYE'} />
              <HeadSelect className="mx-auto" label={'HEAD'} />
